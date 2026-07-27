@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar/Top Dropdown for Playlists -->
+        <header>
+            <h2>My Playlists</h2>
+            <select id="playlist-selector">
+                <!-- Dynamically populated via JS -->
+            </select>
+        </header>
+
+        <!-- Player Card -->
+        <main class="player">
+            <h3 id="current-title">Select a Track</h3>
+            <audio id="audio-player" controls></audio>
+        </main>
+
+        <!-- Tracklist UI -->
+        <ul id="track-list" class="track-list"></ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

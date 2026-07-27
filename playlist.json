@@ -1,0 +1,20 @@
+{
+  "playlists": [
+    {
+      "id": "gym-hits",
+      "name": "🔥 Workout Beats",
+      "tracks": [
+        { "title": "Phonk Beat 1", "file": "audio/workout/phonk1.mp3" },
+        { "title": "Bass Boost Trimmed", "file": "audio/workout/bass.mp3" }
+      ]
+    },
+    {
+      "id": "chill-vibes",
+      "name": "🌙 Night Vibes",
+      "tracks": [
+        { "title": "Lofi Trim 1", "file": "audio/chill/lofi1.mp3" },
+        { "title": "Acoustic Loop", "file": "audio/chill/acoustic.mp3" }
+      ]
+    }
+  ]
+}
