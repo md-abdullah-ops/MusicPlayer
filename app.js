@@ -2,10 +2,16 @@ let playlistData = [];
 let currentPlaylistIndex = 0;
 let currentTrackIndex = 0;
 
+// Loop modes: 'playlist' | 'track'
+let currentLoopMode = 'playlist'; 
+
 const selector = document.getElementById('playlist-selector');
 const trackList = document.getElementById('track-list');
 const audioPlayer = document.getElementById('audio-player');
 const currentTitle = document.getElementById('current-title');
+
+const btnLoopTrack = document.getElementById('btn-loop-track');
+const btnLoopPlaylist = document.getElementById('btn-loop-playlist');
 
 // Fetch playlists.json on load
 fetch('playlists.json')
@@ -19,20 +25,25 @@ fetch('playlists.json')
 function initApp() {
     // Populate Playlist Dropdown
     selector.innerHTML = playlistData.map((pl, idx) => 
-        `<option value="${idx}">${pl.name}</option>`
+        `<option value="${idx}">📁 ${pl.name}</option>`
     ).join('');
 
     renderPlaylist(0);
 
-    // Event Listeners
+    // Dropdown Change
     selector.addEventListener('change', (e) => {
         currentPlaylistIndex = parseInt(e.target.value, 10);
         renderPlaylist(currentPlaylistIndex);
     });
 
-    audioPlayer.addEventListener('ended', playNextTrack);
+    // Track ended logic
+    audioPlayer.addEventListener('ended', handleTrackEnded);
 
-    // Register Media Session API Action Handlers for Mobile Lock Screen / Notification Center
+    // Loop Mode Buttons
+    btnLoopTrack.addEventListener('click', () => setLoopMode('track'));
+    btnLoopPlaylist.addEventListener('click', () => setLoopMode('playlist'));
+
+    // Register Mobile Media Session API
     if ('mediaSession' in navigator) {
         navigator.mediaSession.setActionHandler('play', () => audioPlayer.play());
         navigator.mediaSession.setActionHandler('pause', () => audioPlayer.pause());
@@ -41,11 +52,22 @@ function initApp() {
     }
 }
 
+function setLoopMode(mode) {
+    currentLoopMode = mode;
+    if (mode === 'track') {
+        btnLoopTrack.classList.add('active');
+        btnLoopPlaylist.classList.remove('active');
+    } else {
+        btnLoopPlaylist.classList.add('active');
+        btnLoopTrack.classList.remove('active');
+    }
+}
+
 function renderPlaylist(index) {
     const playlist = playlistData[index];
     trackList.innerHTML = playlist.tracks.map((track, tIdx) => `
-        <li class="track-item" onclick="playTrack(${tIdx})">
-            ${tIdx + 1}. ${track.title}
+        <li class="track-item ${tIdx === currentTrackIndex ? 'active' : ''}" onclick="playTrack(${tIdx})">
+            <span>> ${tIdx + 1}.</span> ${track.title}
         </li>
     `).join('');
 }
@@ -62,12 +84,12 @@ function playTrack(tIdx) {
         items[tIdx].classList.add('active');
     }
 
-    // Update Player & Play
+    // Play Audio
     audioPlayer.src = track.file;
-    currentTitle.innerText = track.title;
-    audioPlayer.play().catch(err => console.log('Autoplay blocked or playback error:', err));
+    currentTitle.innerText = `${playlist.name} / ${track.title}`;
+    audioPlayer.play().catch(err => console.log('Playback blocked:', err));
 
-    // Update Native Mobile Controls
+    // Update Mobile Notification / Lockscreen
     if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
             title: track.title,
@@ -76,12 +98,22 @@ function playTrack(tIdx) {
     }
 }
 
+function handleTrackEnded() {
+    if (currentLoopMode === 'track') {
+        // Replay current song
+        playTrack(currentTrackIndex);
+    } else {
+        // Play Next in Playlist
+        playNextTrack();
+    }
+}
+
 function playNextTrack() {
     const currentPlaylist = playlistData[currentPlaylistIndex];
     if (currentTrackIndex + 1 < currentPlaylist.tracks.length) {
         playTrack(currentTrackIndex + 1);
     } else {
-        // Loop back to start of playlist
+        // Loop back to top of playlist
         playTrack(0);
     }
 }

@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Music Player</title>
+    <title>Dev Player</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <div class="app-container">
-        <!-- Sidebar/Top Dropdown for Playlists -->
-        <header>
-            <h2>My Playlists</h2>
-            <select id="playlist-selector">
+        <!-- Header & Selector -->
+        <header class="dev-header">
+            <div class="logo-title">
+                <i class="fa-solid fa-terminal"></i>
+                <h2>// PLAYLISTS</h2>
+            </div>
+            <select id="playlist-selector" class="dev-select">
                 <!-- Dynamically populated via JS -->
             </select>
         </header>
 
-        <!-- Player Card -->
-        <main class="player">
-            <h3 id="current-title">Select a Track</h3>
-            <audio id="audio-player" controls></audio>
+        <!-- Tracklist Section -->
+        <main class="content-area">
+            <ul id="track-list" class="track-list"></ul>
         </main>
 
-        <!-- Tracklist UI -->
-        <ul id="track-list" class="track-list"></ul>
+        <!-- Sticky Bottom Player -->
+        <footer class="sticky-player">
+            <div class="player-info">
+                <span class="status-dot"></span>
+                <h3 id="current-title">Select a Track</h3>
+            </div>
+
+            <audio id="audio-player" controls class="full-audio-player"></audio>
+
+            <!-- Playback Mode Toggles -->
+            <div class="mode-controls">
+                <button id="btn-loop-track" class="mode-btn" title="Loop Current Song">
+                    <i class="fa-solid fa-arrows-to-circle"></i> Loop Song
+                </button>
+                <button id="btn-loop-playlist" class="mode-btn active" title="Play Playlist Continuously">
+                    <i class="fa-solid fa-repeat"></i> Play All
+                </button>
+            </div>
+        </footer>
     </div>
 
     <script src="app.js"></script>
