@@ -451,6 +451,18 @@
           "file": "audio/music1/Salat_o_salam.mp3"
         },
         {
+          "title": "Tum_ek_goorakh",
+          "file": "audio/music1/Tum_ek_goorakh.mp3"
+        },
+        {
+          "title": "music1",
+          "file": "audio/music1/Aastan_hai_yeh_kis.mp3"
+        },
+        {
+          "title": "Aaqa_salim_chisty",
+          "file": "audio/music1/Aaqa_salim_chisty.mp3"
+        },
+        {
           "title": "More_angnah_moin_uddin_aagaye_1",
           "file": "audio/music1/More_angnah_moin_uddin_aagaye_1.mp3"
         },
@@ -477,6 +489,10 @@
       "name": "Nfak",
       "tracks": [
         {
+          "title": "Tum_ek_goorakh",
+          "file": "audio/music1/Tum_ek_goorakh.mp3"
+        },
+        {
           "title": "Sanson_ki_mala_pe_simron_mein_1",
           "file": "audio/nfak/Sanson_ki_mala_pe_simron_mein_1.mp3"
         },
@@ -489,20 +505,12 @@
           "file": "audio/nfak/Naseeb_Mera_Jaga_Diya.mp3"
         },
         {
-          "title": "Kali_kali_zulfon",
-          "file": "audio/nfak/Kali_kali_zulfon.mp3"
-        },
-        {
           "title": "Kali_kali_zulfon_2",
           "file": "audio/nfak/Kali_kali_zulfon_2.mp3"
         },
         {
           "title": "Aisa_bana_sawarna_1",
           "file": "audio/nfak/Aisa_bana_sawarna_1.mp3"
-        },
-        {
-          "title": "Sochta_hoon",
-          "file": "audio/nfak/Sochta_hoon.mp3"
         },
         {
           "title": "Sochta_hoon_1",
@@ -523,10 +531,6 @@
         {
           "title": "Jab_woh_ajnabi_ban_kar",
           "file": "audio/nfak/Jab_woh_ajnabi_ban_kar.mp3"
-        },
-        {
-          "title": "Hai_Kahan_Ka_Irada",
-          "file": "audio/nfak/Hai_Kahan_Ka_Irada.mp3"
         },
         {
           "title": "Hai_kahan_ka_irada_1",
